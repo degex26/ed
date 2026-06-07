@@ -1,8 +1,7 @@
 #!/bin/bash
 
-apt-get update && apt-get install -y \
-  nfs-server mdadm httpd2 apache2-mod_php8.1 \
-  php8.1 php8.1-mysqlnd mariadb-server dnsmasq
+apt-get update
+apt-get install -y nfs-server mdadm httpd2 apache2-mod_php8.1 php8.1 php8.1-mysqlnd mariadb-server dnsmasq
 
 mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sdb /dev/sdc
 mkfs.ext4 /dev/md0

@@ -1,6 +1,8 @@
 #!/bin/bash
 
-apt-get update && apt-get install nginx apache2-htpasswd -y
+apt-get update
+apt-get install -y nginx apache2-htpasswd
+
 systemctl enable --now nginx
 
 htpasswd -b -c /etc/nginx/.htpasswd WEB P@ssw0rd

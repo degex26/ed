@@ -1,5 +1,8 @@
 #!/bin/bash
 
+apt-get update
+apt-get install -y wget curl nftables chrony
+
 timedatectl set-timezone Asia/Novosibirsk
 hostnamectl set-hostname ISP.au-team.irpo
 
@@ -21,8 +24,6 @@ systemctl restart network
 echo "net.ipv4.ip_forward = 1" >> /etc/net/sysctl.conf
 systemctl restart network
 
-apt-get update && apt-get install nftables -y
-
 cat <<'EOF' > /etc/nftables/nftables.nft
 #!/usr/sbin/nft -f
 flush ruleset
@@ -34,3 +35,9 @@ table ip nat {
 }
 EOF
 systemctl enable --now nftables
+
+cat <<EOF >> /etc/chrony.conf
+local stratum 5
+allow 0.0.0.0/0
+EOF
+systemctl restart chronyd

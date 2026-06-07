@@ -1,6 +1,7 @@
 #!/bin/bash
 
-apt-get update && apt-get install -y docker-engine docker-compose ansible sshpass
+apt-get update
+apt-get install -y docker-engine docker-compose ansible sshpass
 systemctl enable --now docker
 
 mkdir -p /mnt/cdrom

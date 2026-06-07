@@ -1,5 +1,8 @@
 #!/bin/bash
 
+apt-get update
+apt-get install -y chrony
+
 timedatectl set-timezone Asia/Novosibirsk
 hostnamectl set-hostname br-srv.au-team.irpo
 
@@ -17,3 +20,6 @@ sed -i 's/#Port 22/Port 2026/' /etc/openssh/sshd_config
 echo "AllowUsers sshuser" >> /etc/openssh/sshd_config
 echo "Authorized access only" > /etc/openssh/banner
 systemctl restart sshd
+
+echo "server 172.16.2.1 iburst" > /etc/chrony.conf
+systemctl restart chronyd

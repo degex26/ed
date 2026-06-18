@@ -10,5 +10,5 @@ echo 'NM_CONTROLLED=no' >> /etc/net/ifaces/ens18/options
 echo 'DISABLED=no' >> /etc/net/ifaces/ens18/options
 systemctl restart network
 
-echo "server 172.16.1.1 iburst" > /etc/chrony.conf
+echo "server 172.16.30.1 iburst" > /etc/chrony.conf
 systemctl restart chronyd

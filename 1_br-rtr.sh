@@ -1,6 +1,5 @@
 enable
 configure terminal
-
 hostname br-rtr.au-team.irpo
 ip domain-name au-team.irpo
 

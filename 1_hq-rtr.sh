@@ -1,6 +1,5 @@
 enable
 configure terminal
-
 hostname hq-rtr.au-team.irpo
 ip domain-name au-team.irpo
 
@@ -10,17 +9,17 @@ interface e1
  exit
 
 interface e2
- ip address 192.168.1.1/27
+ ip address 192.168.113.1/27
  ip nat inside
  exit
 
 interface e3
- ip address 192.168.1.33/27
+ ip address 192.168.213.1/27
  ip nat inside
  exit
 
 interface e4
- ip address 192.168.1.65/29
+ ip address 192.168.813.1/29
  ip nat inside
  exit
 
@@ -43,14 +42,14 @@ port te1
 
 ip route 0.0.0.0/0 172.16.30.1
 
-ip nat pool nat 192.168.1.1-192.168.1.30,192.168.1.33-192.168.1.62,192.168.1.65-192.168.1.70
+ip nat pool nat 192.168.113.1-192.168.113.30,192.168.213.1-192.168.213.30,192.168.813.1-192.168.813.6
 ip nat source dynamic inside-to-outside pool nat overload interface e1
 
 ip pool dhcp 1
- range 192.168.1.34-192.168.1.62
+ range 192.168.213.2-192.168.213.30
  mask 255.255.255.224
- gateway 192.168.1.33
- dns 192.168.1.2
+ gateway 192.168.213.1
+ dns 192.168.113.2
  domain-name au-team.irpo
  exit
 
@@ -68,9 +67,9 @@ interface tunnel.1
 
 router ospf 1
  network 192.168.10.0/30 area 0.0.0.0
- network 192.168.1.0/27 area 0.0.0.0
- network 192.168.1.32/27 area 0.0.0.0
- network 192.168.1.64/29 area 0.0.0.0
+ network 192.168.113.0/27 area 0.0.0.0
+ network 192.168.213.0/27 area 0.0.0.0
+ network 192.168.813.0/29 area 0.0.0.0
  passive-interface default
  no passive-interface tunnel.1
  exit

@@ -12,7 +12,7 @@ echo '/dev/md0 /raid ext4 defaults 0 0' >> /etc/fstab
 
 mkdir -p /raid/nfs
 chmod 777 /raid/nfs
-echo "/raid/nfs 192.168.1.32/27(rw,sync,no_subtree_check)" >> /etc/exports
+echo "/raid/nfs 192.168.213.0/27(rw,sync,no_subtree_check)" >> /etc/exports
 exportfs -rav
 systemctl enable --now nfs-server
 
@@ -25,13 +25,13 @@ server=8.8.8.8
 cache-size=1000
 all-servers
 no-negcache
-host-record=hq-rtr.au-team.irpo,192.168.1.1
-host-record=hq-srv.au-team.irpo,192.168.1.2
-host-record=hq-cli.au-team.irpo,192.168.1.34
-address=/br-rtr.au-team.irpo/192.168.2.1
+host-record=hq-rtr.au-team.irpo,172.16.30.2
+host-record=hq-srv.au-team.irpo,192.168.113.2
+host-record=hq-cli.au-team.irpo,192.168.213.2
+address=/br-rtr.au-team.irpo/172.16.40.2
 address=/br-srv.au-team.irpo/192.168.2.2
-address=/docker.au-team.irpo/172.16.1.1
-address=/web.au-team.irpo/172.16.2.1
+address=/docker.au-team.irpo/172.16.30.1
+address=/web.au-team.irpo/172.16.40.1
 EOF
 systemctl enable --now dnsmasq
 

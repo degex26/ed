@@ -17,12 +17,12 @@ EOF
 mkdir -p /etc/net/ifaces/ens19 /etc/net/ifaces/ens20
 echo 'TYPE=eth' > /etc/net/ifaces/ens19/options
 echo 'TYPE=eth' > /etc/net/ifaces/ens20/options
-echo "172.16.1.1/28" > /etc/net/ifaces/ens19/ipv4address
-echo "172.16.2.1/28" > /etc/net/ifaces/ens20/ipv4address
+echo "172.16.30.1/28" > /etc/net/ifaces/ens19/ipv4address
+echo "172.16.40.1/28" > /etc/net/ifaces/ens20/ipv4address
 systemctl restart network
 
-echo "net.ipv4.ip_forward = 1" >> /etc/net/sysctl.conf
-systemctl restart network
+echo "net.ipv4.ip_forward = 1" > /etc/sysctl.d/99-ipforward.conf
+sysctl -p /etc/sysctl.d/99-ipforward.conf
 
 cat <<'EOF' > /etc/nftables/nftables.nft
 #!/usr/sbin/nft -f
